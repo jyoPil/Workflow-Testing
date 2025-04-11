@@ -1,4 +1,4 @@
-name: Label issues
+name: Missing Label issues
 on:
   issues:
     types:
@@ -10,9 +10,9 @@ jobs:
     permissions:
       issues: write
     steps:
-      - run: gh issue edit "$NUMBER" --add-label "$LABELS"
+      - run: gh issue edit "$NUMBER" --get-label "$LABELS"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
-          LABELS: Needs Triage
+          LABELS: any
